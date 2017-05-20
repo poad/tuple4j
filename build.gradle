@@ -2,7 +2,6 @@ group 'poad.functional.type'
 version '0.0.1'
 
 apply plugin: 'java'
-apply plugin: "application"
 apply plugin: "maven"
 apply plugin: "signing"
 
@@ -12,10 +11,67 @@ description = "Tuple for Java"
 
 
 sourceCompatibility = 1.8
+
+
+//set build variables based on build type (release, continuous integration, development)
+def isDevBuild
+def isCiBuild
+def isReleaseBuild
+def sonatypeRepositoryUrl
+if (hasProperty("release")) {
+    isReleaseBuild = true
+    sonatypeRepositoryUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+} else if (hasProperty("ci")) {
+    isCiBuild = true
+    version += "-SNAPSHOT"
+    sonatypeRepositoryUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+} else {
+    isDevBuild = true
+    version += "-SNAPSHOT"
+}
+
+repositories {
+    mavenCentral()
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile 'com.tngtech.jgiven:jgiven-junit:0.15.1'
+    testCompile 'org.assertj:assertj-core:3.7.0'
+}
+
+compileJava {
+    gradle.projectsEvaluated {
+        if (project.hasProperty('warn')) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
+    options.encoding = 'UTF-8'
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from "${buildDir}/javadoc"
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
 signing {
     required { isReleaseBuild }
     sign configurations.archives
 }
+
 
 uploadArchives {
     repositories {
@@ -60,14 +116,4 @@ uploadArchives {
             }
         }
     }
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile 'com.tngtech.jgiven:jgiven-junit:0.15.1'
-    testCompile 'org.assertj:assertj-core:3.7.0'
 }
