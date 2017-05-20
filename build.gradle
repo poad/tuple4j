@@ -1,9 +1,66 @@
 group 'poad.functional.type'
-version '1.0-SNAPSHOT'
+version '0.0.1'
 
 apply plugin: 'java'
+apply plugin: "application"
+apply plugin: "maven"
+apply plugin: "signing"
+
+archivesBaseName = "tuple4j"
+
+description = "Tuple for Java"
+
 
 sourceCompatibility = 1.8
+signing {
+    required { isReleaseBuild }
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        if (isDevBuild) {
+            mavenLocal()
+        }
+        else {
+            mavenDeployer {
+                if(isReleaseBuild) {
+                    beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+                }
+
+                repository(url: sonatypeRepositoryUrl) {
+                    authentication(userName: sonatypeUsername, password: sonatypePassword)
+                }
+
+                pom.project {
+                    name 'tuple4j'
+                    packaging 'jar'
+                    description 'Tuple for Java'
+                    url 'https://github.com/poad/tuple4j'
+
+                    scm {
+                        url "scm:git@github.com:isucon/isucon-bench-java.git"
+                        connection "scm:git@github.com:poad/tuple4j.git"
+                        developerConnection "scm:git@github.com:poad/tuple4j.git"
+                    }
+                    licenses {
+                        license {
+                            name 'Apache License, Version 2.0'
+                            url 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id 'poad'
+                            name 'Kenji Saito'
+                            email 'poad1010@gmail.com'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 repositories {
     mavenCentral()
