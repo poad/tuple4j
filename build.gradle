@@ -2,6 +2,7 @@ group 'poad.functional.type'
 version '0.0.1'
 
 apply plugin: 'java'
+apply plugin: 'scala'
 apply plugin: "maven"
 apply plugin: "signing"
 
@@ -42,6 +43,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile 'com.tngtech.jgiven:jgiven-junit:0.15.1'
     testCompile 'org.assertj:assertj-core:3.7.0'
+    testCompile 'org.scala-lang:scala-library:2.12.2'
 }
 
 compileJava {
