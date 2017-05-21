@@ -1,4 +1,4 @@
-package poad.functional.type.tuple;
+package com.github.poad.functional.type.tuple;
 
 public class Triple<L, M, R> extends Pair<L, M> {
 

@@ -1,7 +1,7 @@
-package poad.functional.type.tuple.step;
+package com.github.poad.functional.type.tuple.step;
 
+import com.github.poad.functional.type.tuple.Pair;
 import com.tngtech.jgiven.Stage;
-import poad.functional.type.tuple.Pair;
 
 import static org.assertj.core.api.Assertions.*;
 

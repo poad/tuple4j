@@ -34,4 +34,4 @@ Systemm.out.println(triple._3);   // "a"
 ## Why do you not encapsulate a properties?
 There are the following reasons for it.
 - make it as immutable object
-- refer to [Tuple of Scala](https://github.com/poad/tuple4j/blob/master/src/test/scala/poad/functional/type/tuple/exammple/TupleExample.scala)
+- refer to [Tuple of Scala](https://github.com/poad/tuple4j/blob/master/src/test/scala/com/github/poad/functional/type/tuple/exammple/TupleExample.scala)

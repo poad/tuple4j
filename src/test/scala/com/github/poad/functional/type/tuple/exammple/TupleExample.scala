@@ -1,4 +1,4 @@
-package poad.functional.`type`.tuple.exammple
+package com.github.poad.functional.`type`.tuple.exammple
 
 object Exammple extends App {
   val pair = (123, "abc")

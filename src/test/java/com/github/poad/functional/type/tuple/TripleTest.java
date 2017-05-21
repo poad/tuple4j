@@ -1,11 +1,10 @@
-package poad.functional.type.tuple;
+package com.github.poad.functional.type.tuple;
 
 import com.tngtech.jgiven.junit.ScenarioTest;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
-import poad.functional.type.tuple.step.PairTestStep;
-import poad.functional.type.tuple.step.TripleTestStep;
+import com.github.poad.functional.type.tuple.step.TripleTestStep;
 
 import java.util.Collections;
 import java.util.List;
