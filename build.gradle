@@ -97,7 +97,7 @@ uploadArchives {
                     url 'https://github.com/poad/tuple4j'
 
                     scm {
-                        url "scm:git@github.com:isucon/isucon-bench-java.git"
+                        url "scm:git@github.com:poad/tuple4j.git"
                         connection "scm:git@github.com:poad/tuple4j.git"
                         developerConnection "scm:git@github.com:poad/tuple4j.git"
                     }
