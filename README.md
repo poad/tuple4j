@@ -34,4 +34,18 @@ Systemm.out.println(triple._3);   // "a"
 ## Why do you not encapsulate a properties?
 There are the following reasons for it.
 - make it as immutable object
-- refer to [Tuple of Scala](https://github.com/poad/tuple4j/blob/master/src/test/scala/com/github/poad/functional/type/tuple/exammple/TupleExample.scala)
+- refer to [Tuple of Scaa](https://github.com/poad/tuple4j/blob/master/src/test/scala/com/github/poad/functional/type/tuple/exammple/TupleExample.scala)
+
+### Use by Maven
+```
+<dependency>
+    <groupId>com.github.poad</groupId>
+    <artifactId>tuple4j</artifactId>
+    <version>0.0.1</version>
+</dependency>
+```
+
+### Use by Gradle
+```bazaar
+compile 'com.github.poad:tuple4j:0.0.1'
+```
