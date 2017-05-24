@@ -41,11 +41,11 @@ There are the following reasons for it.
 <dependency>
     <groupId>com.github.poad</groupId>
     <artifactId>tuple4j</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
 </dependency>
 ```
 
 ### Use by Gradle
 ```bazaar
-compile 'com.github.poad:tuple4j:0.0.1'
+compile 'com.github.poad:tuple4j:0.0.2'
 ```
