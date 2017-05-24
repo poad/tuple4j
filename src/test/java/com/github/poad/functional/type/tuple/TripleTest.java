@@ -16,7 +16,9 @@ public class TripleTest {
         @Test
         public void normal() {
             given().generateInstanceWith(1, 2, 3);
-            then().tripleWith(1, 2, 3);
+            then().tripleWith(1, 2, 3)
+                    .and()
+                    .toString("(1, 2, 3)");
         }
     }
 
@@ -25,7 +27,9 @@ public class TripleTest {
         public void normal() {
             final List<Integer> list = Collections.singletonList(123);
             given().generateInstanceWith("abc", list, 123);
-            then().tripleWith("abc", list, 123);
+            then().tripleWith("abc", list, 123)
+                    .and()
+                    .toString("(abc, " + list.toString() + ", 123)");
         }
     }
 
@@ -33,7 +37,9 @@ public class TripleTest {
         @Test
         public void normal() {
             given().generateInstanceWith("abc", null, null);
-            then().tripleWith("abc", null, null);
+            then().tripleWith("abc", null, null)
+                    .and()
+                    .toString("(abc, null, null)");
         }
     }
 }

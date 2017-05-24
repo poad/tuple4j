@@ -19,4 +19,9 @@ public class TripleTestStep extends Stage<TripleTestStep> {
         assertThat(triple._3).isEqualTo(o2);
         return self();
     }
+
+    public TripleTestStep toString(String expect) {
+        assertThat(triple.toString()).isEqualTo(expect);
+        return self();
+    }
 }

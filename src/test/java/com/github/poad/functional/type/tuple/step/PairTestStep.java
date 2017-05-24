@@ -18,4 +18,9 @@ public class PairTestStep extends Stage<PairTestStep> {
         assertThat(pair._2).isEqualTo(o1);
         return self();
     }
+
+    public PairTestStep toString(String expect) {
+        assertThat(pair.toString()).isEqualTo(expect);
+        return self();
+    }
 }

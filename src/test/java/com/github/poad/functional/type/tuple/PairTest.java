@@ -16,7 +16,9 @@ public class PairTest {
         @Test
         public void normal() {
             given().generateInstanceWith(1, 2);
-            then().pairWith(1, 2);
+            then().pairWith(1, 2)
+                    .and()
+                    .toString("(1, 2)");
         }
     }
 
@@ -25,7 +27,9 @@ public class PairTest {
         public void normal() {
             final List<Integer> list = Collections.singletonList(123);
             given().generateInstanceWith("abc", list);
-            then().pairWith("abc", list);
+            then().pairWith("abc", list)
+                    .and()
+                    .toString("(abc, " + list.toString() + ")");
         }
     }
 
@@ -33,7 +37,9 @@ public class PairTest {
         @Test
         public void normal() {
             given().generateInstanceWith("abc", null);
-            then().pairWith("abc", null);
+            then().pairWith("abc", null)
+                    .and()
+                    .toString("(abc, null)");
         }
     }
 }
