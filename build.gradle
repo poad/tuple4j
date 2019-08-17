@@ -1,6 +1,17 @@
 group 'com.github.poad'
 version '0.0.2'
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "com.tngtech.jgiven:jgiven-gradle-plugin:0.17.1"
+    }
+}
+
+apply plugin: "com.tngtech.jgiven.gradle-plugin"
 apply plugin: 'java'
 apply plugin: 'scala'
 apply plugin: "maven"
@@ -35,15 +46,11 @@ repositories {
     mavenCentral()
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile 'com.tngtech.jgiven:jgiven-junit:0.15.1'
-    testCompile 'org.assertj:assertj-core:3.7.0'
-    testCompile 'org.scala-lang:scala-library:2.12.2'
+    testCompile 'org.junit.vintage:junit-vintage-engine:5.5.1'
+    testCompile 'com.tngtech.jgiven:jgiven-junit:0.17.1'
+    testCompile 'org.assertj:assertj-core:3.13.2'
+    testCompile 'org.scala-lang:scala-library:2.12.9'
 }
 
 compileJava {
