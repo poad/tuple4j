@@ -1,29 +1,23 @@
-group 'com.github.poad'
-version '0.0.2'
-
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath "com.tngtech.jgiven:jgiven-gradle-plugin:${jgivenVersion}"
-    }
+plugins {
+    id "com.tngtech.jgiven.gradle-plugin" version "${jgivenVersion}" apply false
 }
 
 apply plugin: "com.tngtech.jgiven.gradle-plugin"
 apply plugin: 'java'
 apply plugin: 'scala'
-apply plugin: "maven"
-apply plugin: "signing"
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+group 'com.github.poad'
+version '0.0.2'
 
 archivesBaseName = "tuple4j"
 
 description = "Tuple for Java"
 
-
 sourceCompatibility = 1.8
-
+targetCompatibility = 1.8
 
 //set build variables based on build type (release, continuous integration, development)
 def isDevBuild
@@ -72,6 +66,8 @@ task sourcesJar(type: Jar) {
     from sourceSets.main.allSource
 }
 
+test.finalizedBy jgivenTestReport
+
 artifacts {
     archives javadocJar, sourcesJar
 }
@@ -81,26 +77,18 @@ signing {
     sign configurations.archives
 }
 
-
-uploadArchives {
-    repositories {
-        if (isDevBuild) {
+publishing {
+    if (isDevBuild) {
+        repositories {
             mavenLocal()
         }
-        else {
-            mavenDeployer {
-                if(isReleaseBuild) {
-                    beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-                }
-
-                repository(url: sonatypeRepositoryUrl) {
-                    authentication(userName: sonatypeUsername, password: sonatypePassword)
-                }
-
-                pom.project {
+    } else {
+        publications {
+            mavenJava(MavenPublication) {
+                pom {
                     name 'tuple4j'
                     packaging 'jar'
-                    description 'Tuple for Java'
+                    description = 'Tuple for Java'
                     url 'https://github.com/poad/tuple4j'
 
                     scm {
